@@ -182,6 +182,7 @@ def increment(number, by):
     return number + by
 print(increment(number=4, by=9))
 
+
 # اضافه کردن یک به عدد ورودی (با مقدار پیش‌فرض 1)
 def increment(number, by=1):
     return number + by
@@ -221,6 +222,8 @@ def save_user(**user):
     print(user)
 
 save_user(id=56678, name="mohamad", age=16)
+
+
 
 def save_user(**user):
     print(user["name"])
@@ -319,18 +322,24 @@ print(letters.index("b"))
 letters = ["a", "b", "c"]
 print(letters.count("b"))
 
-# مرتب‌سازی لیست
+# مرتب سازی لیست 
 numbers = [3, 20, 1, 7, 4]
 numbers.sort()
 print(numbers)
-
+#مرتب میکند لیست رو به صورت نضولی
 numbers.sort(reverse=True)
 print(numbers)
-
 # استفاده از sorted برای مرتب‌سازی بدون تغییر در لیست اصلی
 print(sorted(numbers))
 print(numbers)
-
+#لیست تاپل
+items = [
+    ("product", 10),
+    ("product", 20),
+    ("product", 30)
+]
+items.sort()
+print(items)
 # مرتب‌سازی لیستی از آیتم‌ها با استفاده از کلید (key)
 items = [
     ("product1", 12),
@@ -372,11 +381,13 @@ browsing.pop()
 print("reviewing", browsing[-1])
 print(browsing)
 
+
 browsing.pop()
 browsing.pop()
 if not browsing:
     print("disable")
 print(browsing)
+
 
 from collections import deque
 
@@ -523,6 +534,7 @@ point["x"] = 10
 point["z"] = 20
 if "a" in point:
     print(point["a"])
+
 # نمایش مقدار کلید "i" با استفاده از متد get (بازگرداندن مقدار None اگر کلید وجود ندارد)
 point = {"x": 1, "y": 2}
 point["x"] = 10
@@ -578,14 +590,16 @@ else:
 
 try:
     age = int(input("age: "))
-    xfactor = 10/age
-except ValueError:
+    xfactor = 10 / age
+except ValueError as ex:
     print(ex)
     print("ash tebah bod")
 except ZeroDivisionError:
     print("arg age")
 else:
-    print("ash tebah bod")
+    print("dorost zadi")
+
+
 
 
 try:
@@ -597,12 +611,12 @@ else:
     print("ash tebah bod")
 
 
-
 def calculate_xfactor(age):
     if age <= 0:
         raise ValueError("are cannot be 0 or less")
     return 10/age
-try: calculate_xfactor(-1)
+try:
+     calculate_xfactor(-1)
 except Exception as ex:
     print(ex)
 
@@ -627,7 +641,7 @@ print(isinstance(point, Point))
 
 # کلاس Point با ویژگی‌های x و y تعریف شده و متد draw این مختصات را ترسیم می‌کند.
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y):  
         self.x = x
         self.y = y
     
@@ -638,9 +652,10 @@ point = Point(1, 3)
 point.draw()
 
 
+
 # دو نمونه از کلاس Point ایجاد شده و متد draw اجرا می‌شود.
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y):  
         self.x = x
         self.y = y
     
@@ -648,14 +663,16 @@ class Point:
         print(f"Point({self.x} , {self.y})")
 
 point = Point(3, 4)
-another = Point(9, 6)
+another = Point(4, 6)
+
 point.greet()
 another.greet()
+
 
 # ویژگی کلاس به نام default_color اضافه شده و مقدار آن چاپ می‌شود.
 class Point:
     default_color = "red"
-    def __init__(self, x, y):
+    def init(self, x, y):
         self.x = x
         self.y = y
     
@@ -672,9 +689,11 @@ print(point.default_color)
 # مقدار default_color برای کلاس Point تغییر داده شده و مقدار جدید چاپ می‌شود.
 class Point:
     default_color = "red"
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
     def draw(self):
         print(f"point ({self.x} , {self.y})")
 
@@ -683,7 +702,6 @@ another = Point(5, 7)
 Point.default_color = "blue"
 print(Point.default_color)
 print(point.default_color)
-
 
 
 # مقدار default_color تنها برای شیء مشخص تغییر داده شده و نتیجه چاپ می‌شود.
@@ -768,7 +786,7 @@ class Point:
         self.x = x
         self.y = y
 
-    def __str__(self):
+    def str(self):
         return f"({self.x},{self.y})"
 
     def draw(self):
@@ -779,25 +797,18 @@ print(str(point))
 
 
 
-# کد ۱: __eq__ هنوز تعریف نشده؛ بنابراین مقایسه بر اساس آدرس حافظه انجام می‌شود
+# کد ۱: eq هنوز تعریف نشده؛ بنابراین مقایسه بر اساس آدرس حافظه انجام می‌شود
+
+
+
+
+# کد ۲: تعریف eq برای مقایسه برابری مقادیر x و y
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-point = Point(1, 2)
-another = Point(3, 4)
-
-print(point == another)  # نتیجه: False (زیرا __eq__ تعریف نشده است)
-
-
-# کد ۲: تعریف __eq__ برای مقایسه برابری مقادیر x و y
-class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    # متد __eq__: بررسی برابری مقادیر x و y دو شیء
+    # متد eq: بررسی برابری مقادیر x و y دو شیء
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
 
@@ -807,13 +818,14 @@ another = Point(1, 2)
 print(point == another)  # نتیجه: True
 
 
-# کد ۳: تعریف __gt__ برای مقایسه "بزرگ‌تر بودن" مقادیر x و y
+# کد ۳: تعریف gt برای مقایسه "بزرگ‌تر بودن" مقادیر x و y
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    # متد __gt__: بررسی بزرگ‌تر بودن مقادیر x و y
+
+# متد gt: بررسی بزرگ‌تر بودن مقادیر x و y
     def __gt__(self, other):
         return self.x > other.x and self.y > other.y
 
@@ -823,15 +835,14 @@ another = Point(1, 2)
 print(point > another)  # نتیجه: False
 
 
-# کد ۴: اشتباه استفاده از __gt__ برای عملگر کوچک‌تر
+# کد ۴: اشتباه استفاده از gt برای عملگر کوچک‌تر
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    # متد __gt__: به اشتباه برای عملگر کوچکتر استفاده شده است
-    # پیشنهاد: تعریف __lt__ به جای __gt__
-    def __gt__(self, other):
+    
+    def __lt__(self, other):
         return self.x < other.x and self.y < other.y
 
 point = Point(1, 2)
@@ -841,6 +852,7 @@ print(point < another)  # نتیجه: False
 
 
 
+# کلاس برای نمایش یک نقطه دو بعدی
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -859,27 +871,12 @@ print(point + another)
 
 
 
-class BadOfWord:
-    def __init__(self):
-        self.words = {}
-
-    def add(self, word):
-        self.words[word] = self.words.get(word, 0) + 1
-
-document = BadOfWord()
-document.add("python")
-document.add("python")
-
-print(document.words)
-
-
-
 class BadOfword:
-    def __init__(self):
+    def __init__(self):  # درست کردن __init__
         self.words = {}
 
     def add(self, word):
-        self.words[word.lower()] = self.words.get(word.lower, 0) + 1
+        self.words[word.lower()] = self.words.get(word.lower(), 0) + 1  
 
 document = BadOfword()
 document.add("Python")
@@ -887,8 +884,26 @@ document.add("PyTHON")
 document.add("pytHon")
 print(document.words)
 
+# کلاس برای پیگیری تعداد تکرار کلمات
+class BadOfword:
+    def __init__(self):
+        self.words = {}
+
+    def add(self, word):
+        self.words[word.lower()] = self.words.get(word.lower(), 0) + 1
+    
+    def __getitem__(self, word):
+        return self.words.get(word.lower(), 0)
+
+document = BadOfword()
+document.add("Python")
+document.add("PyTHON")
+document.add("pytHon")
+
+print(document.getitem("python")) 
 
 
+# کلاس با قابلیت دسترسی به کلمات مانند دیکشنری
 class BadOfword:
     def __init__(self):
         self.words = {}
@@ -908,7 +923,7 @@ print(document["python"])
 
 
 
-
+# کلاس با قابلیت تنظیم تعداد کلمات
 class BadOfword:
     def __init__(self):
         self.words = {}
@@ -932,7 +947,7 @@ print(document["python"])
 
 
 
-
+# کلاس با قابلیت len و iter
 class BadOfword:
     def __init__(self):
         self.words = {}
@@ -961,44 +976,43 @@ document["python"] = 10
 print(len(document))  
 print(document["python"])
 
-
-
-
+# کلاس با ذخیره‌سازی خصوصی برای کلمات
 class BadOfword:
     def __init__(self):
-        self.__words = {}
+        self.words = {}
 
     def add(self, word):
         self.__words[word.lower()] = self.__words.get(word.lower(), 0) + 1
     
-    def __getitem__(self, word):
-        return self.__words.get(word.lower(), 0)
+    def __getitem(self, word):
+        return self.words.get(word.lower(), 0)
     
-    def __setitem__(self, word, count):
-        self.__words[word.lower()] = count  
+    def __setitem(self, word, count):
+        self.words[word.lower()] = count  
     
-    def __len__(self):
-        return len(self.__words)
+    def __len(self):
+        return len(self.words)
     
-    def __iter__(self):
-        return iter(self.__words)
+    def __iter(self):
+        return iter(self.words)
 
 document = BadOfword()
 document.add("Python")
 document.add("PyTHON")
 document.add("pytHon")
 
-print(document["apple"])  
+print(document["apple"])
 
 
 
+# کلاس با قابلیت مدیریت قیمت
 class Poroduct:
-    def __init__(self, price):
+    def __init(self, price):
         self.price = price
     
     @property
     def price(self):
-        return self.__price
+        return self.price
     
     @price.setter
     def price(self, value):
@@ -1008,3 +1022,180 @@ class Poroduct:
 
 product = Poroduct(10)
 print(product.price)
+
+
+
+# کلاس‌های والد و فرزند برای حیوانات
+class Animal:
+    def __init(self):  
+        self.Age = 543
+        
+    def eat(self):
+        print("eat")
+
+class Mammel(Animal):
+    def eat(self):
+        print("eat")
+    
+    def walk(self):
+        print("walk")
+
+class Fish(Animal):
+    def eat(self):
+        print("eat")
+
+age = Mammel()
+print(age.Age)
+
+
+
+# بررسی ارث‌بری والد و فرزند
+class Animal:
+    def init(self):  
+        self.age = 543
+        
+    def eat(self):
+        print("eat")
+
+class Mammel(Animal):
+    def eat(self):
+        print("eat")
+    
+    def walk(self):
+        print("walk")
+
+m = Mammel()
+print(m.age)  
+print(isinstance(m, Animal))
+print(issubclass(Mammel, Animal))
+
+
+
+# استفاده از super در کلاس فرزند
+class Animal:
+    def init(self): 
+        print("animal") 
+        self.age = 3
+    
+    def eat(self):
+        print("eat")
+
+class Mammel(Animal):
+    def init(self):
+        super().init()
+        print("animal")
+        self.weight = 4  
+
+    def eat(self):
+        print("walk")
+    
+m = Mammel()
+print(m.weight)
+
+
+
+# مثال چندریختی با چندین ارث‌بری
+class Employee:
+    def greet(self):
+        print("Employee greet no not")
+
+class Person:
+    def greet(self):
+        print("Person, Greet")
+
+class Manager(Employee, Person):
+    pass
+
+manager = Manager()
+manager.greet()
+
+
+
+# ترتیب معکوس در چندین ارث‌بری
+class Employee:
+    def greet(self):
+        print("Employee greet no not")
+
+class Person:
+    def greet(self):
+        print("Person, Greet")
+
+class Manager(Person, Employee):
+    pass
+
+manager = Manager()
+manager.greet()
+
+
+
+# کلاس رشته سفارشی با متد تکرار
+class Text(str):
+    def duplicate(self):
+        return self + self
+
+text = Text("python")
+print(text.duplicate())
+
+
+
+# لیست سفارشی با ردیابی اپندها
+class TrackableList(list):
+    def append(self, object):
+        print("append called")
+        super().append(object)
+
+my_list = TrackableList()
+my_list.append("1")
+print(my_list)
+
+
+
+# کلاس برای مقایسه تساوی نقاط
+class Point:
+    def init(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def eq(self, other):
+        return self.x == other.x and self.y == other.y
+
+p1 = Point(1, 2)
+p2 = Point(1, 2)
+
+print(id(p1))
+print(id(p2))
+print(p1 == p2)
+
+
+
+import json
+users = [
+    {"id": 1, "name": "pedram", "age": 25},
+    {"id": 2, "name": "reza", "age": 30},
+    {"id": 3, "name": "mohamad", "age": 25}
+]
+data = json.dumps(users)
+print(data)
+
+
+
+#arrays ===> #list, tuple, set, dict
+list1 = ["hello", "goodbye", 12, 0.5]
+tupel = ("lohn", "ali", 100, False)
+set1 = {"mohamad", 50, True}
+dect1 = {"name":"mohamad", "lastname":"ghorbani"}
+
+
+number = float(input("addad ro vared con: "))
+if number > 0 :
+    if number % 2 == 0 :
+        print("adad mosbat v zoj ast")
+    else:
+        print("adad mosbat v fard ast")
+elif number == 0 :
+    print("adad sefr v zoj ast")
+else:
+    if number % 2 == 0:
+        print("ada manfi v zoj ast")
+    else:
+        print("adad manfi v fard ast")
